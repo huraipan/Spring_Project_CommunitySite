@@ -1,4 +1,4 @@
-package com.miribeglobal.config;
+package com.mirineglobal.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

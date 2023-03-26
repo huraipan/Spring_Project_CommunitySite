@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mirine-Community</title>
+<title>미니 프로젝트</title>
 <!-- Bootstrap CDN -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -24,31 +24,32 @@
 		<div class="col-sm-6">
 			<div class="card shadow">
 				<div class="card-body">
-					<form action="${root }user/login" method="get">
+					<form action="${root }board/read" method="get">
 						<div class="form-group">
-							<label for="user_name">名前</label>
-							<input type="text" id="user_name" name="user_name" class="form-control"/>
+							<label for="board_writer_name">作成者</label>
+							<input type="text" id="board_writer_name" name="board_writer_name" class="form-control" value="田中" disabled="disabled"/>
 						</div>
 						<div class="form-group">
-							<label for="user_id">ID</label>
-							<div class="input-group">
-								<input type="text" id="user_id" name="user_id" class="form-control"/>
-								<div class="input-group-append">
-									<button type="button" class="btn btn-primary">重複確認</button>
-								</div>
-							</div>
+							<label for="board_date">作成日</label>
+							<input type="text" id="board_date" name="board_date" class="form-control" value="2018-7-20" disabled="disabled"/>
 						</div>
 						<div class="form-group">
-							<label for="user_pw">パスワード</label>
-							<input type="password" id="user_pw" name="user_pw" class="form-control"/>
+							<label for="board_subject">タイトル</label>
+							<input type="text" id="board_subject" name="board_subject" class="form-control" value="タイトルです"/>
 						</div>
 						<div class="form-group">
-							<label for="user_pw2">パスワード確認</label>
-							<input type="password" id="user_pw2" name="user_pw2" class="form-control"/>
+							<label for="board_content">内容</label>
+							<textarea id="board_content" name="board_content" class="form-control" rows="10" style="resize:none">内容です。</textarea>
+						</div>
+						<div class="form-group">
+							<label for="board_file">添付イメージ</label>
+							<img src="${root }image/logo.png" width="100%"/>	
+							<input type="file" name="board_file" id="board_file" class="form-control" accept="image/*"/>					
 						</div>
 						<div class="form-group">
 							<div class="text-right">
-								<button type="submit" class="btn btn-primary">会員登録</button>
+								<button type="submit" class="btn btn-primary">修正完了</button>
+								<a href="${root }board/read" class="btn btn-info">キャンセル</a>
 							</div>
 						</div>
 					</form>
@@ -60,14 +61,5 @@
 </div>
 
 <c:import url="/WEB-INF/views/include/bottom_info.jsp"/>
-
 </body>
 </html>
-
-
-
-
-
-
-
-

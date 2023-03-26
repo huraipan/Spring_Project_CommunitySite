@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:url var="root" value="/"/>
+<c:set var='root' value='${pageContext.request.contextPath }/'/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +36,7 @@
 						<tbody>
 							<tr>
 								<td class="text-center">5</td>
-								<th><a href='board_read.html'>タイトルです</a></th>
+								<th><a href='${root }board/read'>タイトルです</a></th>
 								<td class="text-center d-none d-xl-table-cell">2023-03-24</td>
 							</tr>
 							<tr>
@@ -62,7 +62,7 @@
 						</tbody>
 					</table>
 					
-					<a href="board_main.html" class="btn btn-primary">もっと見る</a>
+					<a href="${root }board/main" class="btn btn-primary">もっと見る</a>
 				</div>
 			</div>
 		</div>

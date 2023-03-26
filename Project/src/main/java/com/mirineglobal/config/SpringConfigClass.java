@@ -1,4 +1,4 @@
-package com.miribeglobal.config;
+package com.mirineglobal.config;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterRegistration;

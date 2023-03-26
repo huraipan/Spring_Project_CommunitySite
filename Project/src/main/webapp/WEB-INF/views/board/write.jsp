@@ -16,6 +16,7 @@
 </head>
 <body>
 
+
 <c:import url="/WEB-INF/views/include/top_menu.jsp" />
 
 <div class="container" style="margin-top:100px">
@@ -24,23 +25,25 @@
 		<div class="col-sm-6">
 			<div class="card shadow">
 				<div class="card-body">
-					<div class="alert alert-danger">
-						<h3>ログイン失敗</h3>
-						<p>IDパスワードを確認してください</p>
+					<form action="${root }board/read" method="get">
+					<div class="form-group">
+						<label for="board_subject">タイトル</label>
+						<input type="text" id="board_subject" name="board_subject" class="form-control"/>
 					</div>
-					<form action="${root }main" method="get">
-						<div class="form-group">
-							<label for="user_id">ID</label>
-							<input type="text" id="user_id" name="user_id" class="form-control"/>
+					<div class="form-group">
+						<label for="board_content">内容</label>
+						<textarea id="board_content" name="board_content" class="form-control" rows="10" style="resize:none"></textarea>
+					</div>
+					<div class="form-group">
+						<label for="board_file">添付イメージ</label>
+						<input type="file" id="board_file" name="board_file" class="form-control" accept="image/*"/>
+					</div>
+					<div class="form-group">
+						<div class="text-right">
+							<button type="submit" class="btn btn-primary">投稿</button>
 						</div>
-						<div class="form-group">
-							<label for="user_pw">パスワード</label>
-							<input type="password" id="user_pw" name="user_pw" class="form-control"/>
-						</div>
-						<div class="form-group text-right">
-							<button type="submit" class="btn btn-primary">ログイン</button>
-							<a href="${root }user/join" class="btn btn-danger">会員登録</a>
-						</div>
+					</div>
+					
 					</form>
 				</div>
 			</div>
@@ -49,16 +52,7 @@
 	</div>
 </div>
 
-
 <c:import url="/WEB-INF/views/include/bottom_info.jsp"/>
 
 </body>
 </html>
-
-
-
-
-
-
-
-

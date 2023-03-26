@@ -7,15 +7,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>미니 프로젝트</title>
+<title>Mirine-Community</title>
 <!-- Bootstrap CDN -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-
 </head>
 <body>
+	
+
 
 <c:import url="/WEB-INF/views/include/top_menu.jsp" />
 
@@ -25,36 +26,40 @@
 		<div class="col-sm-6">
 			<div class="card shadow">
 				<div class="card-body">
-					<form action="${root }user/modify" method="get">
 					<div class="form-group">
-						<label for="user_name">名前</label>
-						<input type="text" id="user_name" name="user_name" class="form-control" value="田中" disabled="disabled"/>
+						<label for="board_writer_name">作成者</label>
+						<input type="text" id="board_writer_name" name="board_writer_name" class="form-control" value="田中" disabled="disabled"/>
 					</div>
 					<div class="form-group">
-						<label for="user_id">ID</label>
-						<input type="text" id="user_id" name="user_id" class="form-control" value="abc" disabled="disabled"/>
+						<label for="board_date">作成日</label>
+						<input type="text" id="board_date" name="board_date" class="form-control" value="2018-7-20" disabled="disabled"/>
 					</div>
 					<div class="form-group">
-						<label for="user_pw">パスワード</label>
-						<input type="password" id="user_pw" name="user_pw" class="form-control" value="1234"/>
+						<label for="board_subject">タイトル</label>
+						<input type="text" id="board_subject" name="board_subject" class="form-control" value="タイトルです。" disabled="disabled"/>
 					</div>
 					<div class="form-group">
-						<label for="user_pw2">パスワード確認</label>
-						<input type="password" id="user_pw2" name="user_pw2" class="form-control" value="1234"/>
+						<label for="board_content">内容</label>
+						<textarea id="board_content" name="board_content" class="form-control" rows="10" style="resize:none" disabled="disabled">内容です。</textarea>
+					</div>
+					<div class="form-group">
+						<label for="board_file">添付イメージ</label>
+						<img src="${root }image/logo.png" width="100%"/>						
 					</div>
 					<div class="form-group">
 						<div class="text-right">
-							<button type="submit" class="btn btn-primary">情報修正</button>
+							<a href="${root }board/main" class="btn btn-primary">リスト</a>
+							<a href="${root }board/modify" class="btn btn-info">修正</a>
+							<a href="${root }board/delete" class="btn btn-danger">削除</a>
 						</div>
 					</div>
-					
-					</form>
 				</div>
 			</div>
 		</div>
 		<div class="col-sm-3"></div>
 	</div>
 </div>
+
 
 <c:import url="/WEB-INF/views/include/bottom_info.jsp"/>
 
