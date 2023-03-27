@@ -11,18 +11,11 @@
 	</button>
 	<div class="collapse navbar-collapse" id="navMenu">
 		<ul class="navbar-nav">
+			<c:forEach var="obj" items="${topMenuList }">
 			<li class="nav-item">
-				<a href="${root }board/main" class="nav-link">自由掲示板</a>
+				<a href="${root }board/main?board_info_idx=${obj.board_info_idx}" class="nav-link">${obj.board_info_name }</a>
 			</li>
-			<li class="nav-item">
-				<a href="${root }board/main" class="nav-link">IT掲示板</a>
-			</li>
-			<li class="nav-item">
-				<a href="${root }board/main" class="nav-link">日本掲示板</a>
-			</li>
-			<li class="nav-item">
-				<a href="${root }board/main" class="nav-link">スポーツ掲示板</a>
-			</li>
+			</c:forEach>
 		</ul>
 		
 		<ul class="navbar-nav ml-auto">
