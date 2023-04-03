@@ -4,5 +4,5 @@
 <c:set var="root" value="${pageContext.request.contextPath}/"/>
 <script>
 	alert('削除しました。')
-	location.href='${root}board/main'
+	location.href='${root}board/main?board_info_idx=${board_info_idx}'
 </script>

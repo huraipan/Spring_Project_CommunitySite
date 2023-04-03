@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <c:set var='root' value='${pageContext.request.contextPath }/'/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://unpkg.com/98.css">
 <title>Mirine-Community</title>
 <!-- Bootstrap CDN -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
@@ -24,35 +27,43 @@
 		<div class="col-sm-6">
 			<div class="card shadow">
 				<div class="card-body">
-					<form action="${root }board/read" method="get">
+					<form:form action='${root }board/modify_pro' method='post' modelAttribute="modifyContentBean" enctype="multipart/form-data">
+						<form:hidden path="content_idx"/>
+						<form:hidden path="content_board_idx"/>
+						<input type="hidden" name="page" value="${page }"/>
 						<div class="form-group">
-							<label for="board_writer_name">作成者</label>
-							<input type="text" id="board_writer_name" name="board_writer_name" class="form-control" value="田中" disabled="disabled"/>
+							<form:label path="content_writer_name">作成者</form:label>
+							<form:input path="content_writer_name" class="form-control" readonly="true"/>
 						</div>
 						<div class="form-group">
-							<label for="board_date">作成日</label>
-							<input type="text" id="board_date" name="board_date" class="form-control" value="2018-7-20" disabled="disabled"/>
+							<form:label path="content_date">作成日</form:label>
+							<form:input path="content_date" class='form-control' readonly='true'/>
 						</div>
 						<div class="form-group">
-							<label for="board_subject">タイトル</label>
-							<input type="text" id="board_subject" name="board_subject" class="form-control" value="タイトルです"/>
+							<form:label path="content_subject">タイトル</form:label>
+							<form:input path="content_subject" class="form-control"/>
+							<form:errors path="content_subject" style='color:red'/>
 						</div>
 						<div class="form-group">
-							<label for="board_content">内容</label>
-							<textarea id="board_content" name="board_content" class="form-control" rows="10" style="resize:none">内容です。</textarea>
+							<form:label path="content_text">内容</form:label>
+							<form:textarea path="content_text" class="form-control" rows="10" style="resize:none"/>
+							<form:errors path="content_text" style='color:red'/>
 						</div>
 						<div class="form-group">
 							<label for="board_file">添付イメージ</label>
-							<img src="${root }image/logo.png" width="100%"/>	
-							<input type="file" name="board_file" id="board_file" class="form-control" accept="image/*"/>					
+							<c:if test="${modifyContentBean.content_file != null }">
+							<img src="${root }upload/${modifyContentBean.content_file}" width="100%"/>	
+							<form:hidden path="content_file"/>
+							</c:if>
+							<form:input path="upload_file" type='file' class="form-control" accept="image/*"/>					
 						</div>
 						<div class="form-group">
 							<div class="text-right">
-								<button type="submit" class="btn btn-primary">修正完了</button>
-								<a href="${root }board/read" class="btn btn-info">キャンセル</a>
+								<form:button class="btn btn-primary">修正完了</form:button>
+								<a href="${root }board/read?board_info_idx=${board_info_idx}&content_idx=${content_idx}&page=${page}" class="btn btn-info">キャンセル</a>
 							</div>
 						</div>
-					</form>
+					</form:form>
 				</div>
 			</div>
 		</div>

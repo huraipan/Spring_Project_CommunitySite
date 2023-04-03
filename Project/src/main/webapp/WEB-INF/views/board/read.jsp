@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://unpkg.com/98.css">
 <title>Mirine-Community</title>
 <!-- Bootstrap CDN -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
@@ -28,29 +29,33 @@
 				<div class="card-body">
 					<div class="form-group">
 						<label for="board_writer_name">作成者</label>
-						<input type="text" id="board_writer_name" name="board_writer_name" class="form-control" value="田中" disabled="disabled"/>
+						<input type="text" id="board_writer_name" name="board_writer_name" class="form-control" value="${readContentBean.content_writer_name }" disabled="disabled"/>
 					</div>
 					<div class="form-group">
 						<label for="board_date">作成日</label>
-						<input type="text" id="board_date" name="board_date" class="form-control" value="2018-7-20" disabled="disabled"/>
+						<input type="text" id="board_date" name="board_date" class="form-control" value="${readContentBean.content_date}" disabled="disabled"/>
 					</div>
 					<div class="form-group">
 						<label for="board_subject">タイトル</label>
-						<input type="text" id="board_subject" name="board_subject" class="form-control" value="タイトルです。" disabled="disabled"/>
+						<input type="text" id="board_subject" name="board_subject" class="form-control" value="${readContentBean.content_subject }" disabled="disabled"/>
 					</div>
 					<div class="form-group">
 						<label for="board_content">内容</label>
-						<textarea id="board_content" name="board_content" class="form-control" rows="10" style="resize:none" disabled="disabled">内容です。</textarea>
+						<textarea id="board_content" name="board_content" class="form-control" rows="10" style="resize:none" disabled="disabled">${readContentBean.content_text }</textarea>
 					</div>
+					<c:if test="${readContentBean.content_file != null }">
 					<div class="form-group">
 						<label for="board_file">添付イメージ</label>
-						<img src="${root }image/logo.png" width="100%"/>						
+						<img src="${root }upload/${readContentBean.content_file}" width="100%"/>						
 					</div>
+					</c:if>
 					<div class="form-group">
 						<div class="text-right">
-							<a href="${root }board/main" class="btn btn-primary">リスト</a>
-							<a href="${root }board/modify" class="btn btn-info">修正</a>
-							<a href="${root }board/delete" class="btn btn-danger">削除</a>
+							<a href="${root }board/main?board_info_idx=${board_info_idx}&page=${page}" class="btn btn-primary">リスト</a>
+							<c:if test="${loginUserBean.user_idx == readContentBean.content_writer_idx }">
+							<a href="${root }board/modify?board_info_idx=${board_info_idx}&content_idx=${content_idx}&page=${page}" class="btn btn-info">修正</a>
+							<a href="${root }board/delete?board_info_idx=${board_info_idx}&content_idx=${content_idx}" class="btn btn-danger">削除</a>
+							</c:if>
 						</div>
 					</div>
 				</div>

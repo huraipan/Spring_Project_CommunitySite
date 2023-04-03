@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://unpkg.com/98.css">
 <title>Mirine-Community</title>
 <!-- Bootstrap CDN -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
@@ -19,12 +20,18 @@
 
 <c:import url="/WEB-INF/views/include/top_menu.jsp" />
 
-<div class="container" style="margin-top:100px">
-	<div class="row">
+<div class="container" style="margin-top:150px">
+	<div class="row" style="margin-bottom: 200px;">
 		<div class="col-sm-3"></div>
 		<div class="col-sm-6">
 			<div class="card shadow">
-				<div class="card-body">
+				<div>
+				
+					<div class="window">
+						<div class="title-bar">
+   							<div class="title-bar-text">Sign in to our platform</div>
+  						</div>
+						<div class="window-body">
 					<c:if test="${fail == true }">
 					<div class="alert alert-danger">
 						<h3>ログイン失敗</h3>
@@ -39,23 +46,46 @@
 						</div>
 						<div class="form-group">
 							<form:label path="user_pw">パスワード</form:label>
-							<form:input path="user_pw" class="form-control"/>
+							<form:password path="user_pw" class="form-control"/>
 							<form:errors path="user_pw" style="color:red"/>
 						</div>
 						<div class="form-group text-right">
-							<form:button class="btn btn-primary">ログイン</form:button>
-							<a href="${root }user/join" class="btn btn-danger">会員登録</a>
+							<form:button class="btn">ログイン</form:button>
+							<a href="${root }user/join" class="btn"><button style="height: 37px; border-radius: 0.25rem;">会員登録</button></a>
 						</div>
 					</form:form>
+					
+					</div>
+						
+					</div>
+					
+					
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-3"></div>
 	</div>
 </div>
 
 
 <c:import url="/WEB-INF/views/include/bottom_info.jsp"/>
+
+
+
+
+
+
+<style>
+	body{
+	  	background: #008080;
+  		font-family: Arial, sans-serif;
+  		user-select: none;
+  		font-weight: 300;
+  		-webkit-font-smoothing: none;
+  		-moz-osx-font-smoothing: grayscale;
+	}	
+</style>
+
+
 
 </body>
 </html>

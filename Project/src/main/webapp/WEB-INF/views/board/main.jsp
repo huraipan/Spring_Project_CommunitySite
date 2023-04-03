@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://unpkg.com/98.css">
 <title>Mirine-Community</title>
 <!-- Bootstrap CDN -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
@@ -18,11 +19,11 @@
 
 <c:import url="/WEB-INF/views/include/top_menu.jsp"/>
 
-<!-- 게시글 리스트 -->
+
 <div class="container" style="margin-top:100px">
 	<div class="card shadow">
 		<div class="card-body">
-			<h4 class="card-title">掲示板の名前</h4>
+			<h4 class="card-title">${boardInfoName }</h4>
 			<table class="table table-hover" id='board_list'>
 				<thead>
 					<tr>
@@ -33,133 +34,58 @@
 					</tr>
 				</thead>
 				<tbody>
+					<c:forEach var='obj' items="${contentList }">
 					<tr>
-						<td class="text-center d-none d-md-table-cell">10</td>
-						<td><a href='${root }board/read'>タイトルです。</a></td>
-						<td class="text-center d-none d-md-table-cell">田中</td>
-						<td class="text-center d-none d-md-table-cell">2023-03-24</td>
+						<td class="text-center d-none d-md-table-cell">${obj.content_idx }</td>
+						<td><a href='${root }board/read?board_info_idx=${board_info_idx}&content_idx=${obj.content_idx}&page=${page}'>${obj.content_subject }</a></td>
+						<td class="text-center d-none d-md-table-cell">${obj.content_writer_name }</td>
+						<td class="text-center d-none d-md-table-cell">${obj.content_date }</td>
 						
 					</tr>
-					<tr>
-						<td class="text-center d-none d-md-table-cell">10</td>
-						<td><a href='board_read.html'>タイトルです。</a></td>
-						<td class="text-center d-none d-md-table-cell">田中</td>
-						<td class="text-center d-none d-md-table-cell">2023-03-24</td>
-						
-					</tr>
-					<tr>
-						<td class="text-center d-none d-md-table-cell">10</td>
-						<td><a href='board_read.html'>タイトルです。</a></td>
-						<td class="text-center d-none d-md-table-cell">田中</td>
-						<td class="text-center d-none d-md-table-cell">2023-03-24</td>
-						
-					</tr>
-					<tr>
-						<td class="text-center d-none d-md-table-cell">10</td>
-						<td><a href='board_read.html'>タイトルです。</a></td>
-						<td class="text-center d-none d-md-table-cell">田中</td>
-						<td class="text-center d-none d-md-table-cell">2023-03-24</td>
-						
-					</tr>
-					<tr>
-						<td class="text-center d-none d-md-table-cell">10</td>
-						<td><a href='board_read.html'>タイトルです。</a></td>
-						<td class="text-center d-none d-md-table-cell">田中</td>
-						<td class="text-center d-none d-md-table-cell">2023-03-24</td>
-						
-					</tr>
-					<tr>
-						<td class="text-center d-none d-md-table-cell">10</td>
-						<td><a href='board_read.html'>タイトルです。</a></td>
-						<td class="text-center d-none d-md-table-cell">田中</td>
-						<td class="text-center d-none d-md-table-cell">2023-03-24</td>
-						
-					</tr>
-					<tr>
-						<td class="text-center d-none d-md-table-cell">10</td>
-						<td><a href='board_read.html'>タイトルです。</a></td>
-						<td class="text-center d-none d-md-table-cell">田中</td>
-						<td class="text-center d-none d-md-table-cell">2023-03-24</td>
-						
-					</tr>
-					<tr>
-						<td class="text-center d-none d-md-table-cell">10</td>
-						<td><a href='board_read.html'>タイトルです。</a></td>
-						<td class="text-center d-none d-md-table-cell">田中</td>
-						<td class="text-center d-none d-md-table-cell">2023-03-24</td>
-						
-					</tr>
-					<tr>
-						<td class="text-center d-none d-md-table-cell">10</td>
-						<td><a href='board_read.html'>タイトルです。</a></td>
-						<td class="text-center d-none d-md-table-cell">田中</td>
-						<td class="text-center d-none d-md-table-cell">2023-03-24</td>
-						
-					</tr>
-					<tr>
-						<td class="text-center d-none d-md-table-cell">10</td>
-						<td><a href='board_read.html'>タイトルです。</a></td>
-						<td class="text-center d-none d-md-table-cell">田中</td>
-						<td class="text-center d-none d-md-table-cell">2023-03-24</td>
-						
-					</tr>
+					</c:forEach>
+					
 				</tbody>
 			</table>
 			
 			<div class="d-none d-md-block">
 				<ul class="pagination justify-content-center">
-					<li class="page-item">
-						<a href="#" class="page-link">以前</a>
+					<c:choose>
+					<c:when test="${pageBean.prevPage <= 0 }">
+					<li class="page-item disabled">
+						<a href="#" ><button>以前</button></a>
 					</li>
+					</c:when>
+					<c:otherwise>
 					<li class="page-item">
-						<a href="#" class="page-link">1</a>
+						<a href="${root }board/main?board_info_idx=${board_info_idx}&page=${pageBean.prevPage}" ><button>以前</button></a>
 					</li>
+					</c:otherwise>
+					</c:choose>
+					
+					
+					<c:forEach var="idx" begin="${pageBean.min }" end="${pageBean.max }">
+						<li class="page-item">
+							<a href="${root }board/main?board_info_idx=${board_info_idx}&page=${idx}" ><button>${idx }</button></a>
+						</li>
+					</c:forEach>
+					<c:choose>
+					<c:when test="${pateBean.max >= pageBean.pageCnt }">
+					<li class="page-item disabled">
+						<a href="#" ><button>次</button></a>
+					</li>
+					</c:when>
+					<c:otherwise>
 					<li class="page-item">
-						<a href="#" class="page-link">2</a>
+						<a href="${root }board/main?board_info_idx=${board_info_idx}&page=${pageBean.nextPage}" ><button>次</button></a>
 					</li>
-					<li class="page-item">
-						<a href="#" class="page-link">3</a>
-					</li>
-					<li class="page-item">
-						<a href="#" class="page-link">4</a>
-					</li>
-					<li class="page-item">
-						<a href="#" class="page-link">5</a>
-					</li>
-					<li class="page-item">
-						<a href="#" class="page-link">6</a>
-					</li>
-					<li class="page-item">
-						<a href="#" class="page-link">7</a>
-					</li>
-					<li class="page-item">
-						<a href="#" class="page-link">8</a>
-					</li>
-					<li class="page-item">
-						<a href="#" class="page-link">9</a>
-					</li>
-					<li class="page-item">
-						<a href="#" class="page-link">10</a>
-					</li>
-					<li class="page-item">
-						<a href="#" class="page-link">次</a>
-					</li>
-				</ul>
-			</div>
-			
-			<div class="d-block d-md-none">
-				<ul class="pagination justify-content-center">
-					<li class="page-item">
-						<a href="#" class="page-link">以前</a>
-					</li>
-					<li class="page-item">
-						<a href="#" class="page-link">次</a>
-					</li>
+					</c:otherwise>
+					</c:choose>
+					
 				</ul>
 			</div>
 			
 			<div class="text-right">
-				<a href="${root }board/write" class="btn btn-primary">投稿</a>
+				<a href="${root }board/write?board_info_idx=${board_info_idx}" class="btn"><button>投稿</button></a>
 			</div>
 			
 		</div>
@@ -167,6 +93,33 @@
 </div>
 
 <c:import url="/WEB-INF/views/include/bottom_info.jsp"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+	body{
+	  	background: #008080;
+  		font-family: Arial, sans-serif;
+  		user-select: none;
+  		font-weight: 300;
+  		-webkit-font-smoothing: none;
+  		-moz-osx-font-smoothing: grayscale;
+	}
+	
+	.card{
+	 background-color: #c0c0c0;
+	}
+</style>
 </body>
 </html>
 
